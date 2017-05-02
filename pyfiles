@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+import os,sys
+
+
+
+if len(sys.argv) == 1:
+    cwd = os.getcwd()
+else:
+    cwd = sys.argv[1]
+f = []
+pf = []
+for p,d,f2 in os.walk(cwd):
+    f.extend(f2)
+    break
+
+for i in f:
+    if i.endswith('.py'):
+        pf.append(i)
+pf = sorted(pf)
+l = len(pf)
+if l != 0:
+    for i in pf:
+        print(i,end='   ')
+    if l == 1:
+        print('\n-->','1', ' file',sep='')
+    else:
+        print('\n-->',l,' files',sep='')
+else:
+    print("No Python files found in '{0}'".format(cwd))
